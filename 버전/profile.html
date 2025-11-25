@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Portal | 회원 정보</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Barun+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-home">
+    <header class="site-header site-header--home">
+        <div class="brand">
+            <span class="brand-mark"><span class="m-letter">m</span><span class="tm-symbol">®</span></span>
+            <div>
+                <p class="brand-label">맑은소프트</p>
+                <p class="brand-sub">영업 지원 포털</p>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-pill">홈</a>
+            <a href="estimate.html" class="nav-pill">견적 작성</a>
+            <a href="estimate_list.html" class="nav-pill">진행현황</a>
+        </nav>
+
+        <div class="header-cta">
+            <a class="btn btn-icon" href="assets/회사소개서.pdf" download>
+                <span class="icon icon-download"></span>
+                회사소개서
+            </a>
+            <div id="userInfo" style="display: none;">
+                <a id="userName" href="profile.html" style="margin-right: 1rem; text-decoration: none; color: inherit; cursor: pointer;"></a>
+                <button type="button" class="btn secondary" onclick="Auth.logout()">로그아웃</button>
+            </div>
+            <a id="loginBtn" href="login.html" class="btn secondary" style="display: none; margin-left: 1rem;">로그인</a>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="profile-container">
+            <h1>회원 정보</h1>
+            <form class="profile-form" id="profileForm">
+                <div class="form-grid">
+                    <label>
+                        회사명
+                        <input type="text" name="company" id="company" />
+                    </label>
+                    <label>
+                        부서
+                        <input type="text" name="department" id="department" />
+                    </label>
+                    <label>
+                        팀명
+                        <input type="text" name="team" id="team" />
+                    </label>
+                    <label>
+                        이름
+                        <input type="text" name="name" id="name" required />
+                    </label>
+                    <label>
+                        직책
+                        <input type="text" name="position" id="position" />
+                    </label>
+                    <label>
+                        연락처
+                        <input type="tel" name="phone" id="phone" />
+                    </label>
+                    <label>
+                        휴대폰 연락처
+                        <input type="tel" name="mobile" id="mobile" />
+                    </label>
+                    <label>
+                        이메일
+                        <input type="email" name="email" id="email" />
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">저장</button>
+                    <a class="btn secondary" href="index.html">취소</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        Auth.requireAuth();
+    </script>
+    <script src="profile.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (Auth.isAuthenticated()) {
+                document.getElementById('userInfo').style.display = 'flex';
+                const userName = document.getElementById('userName');
+                const userProfile = Profile.getProfile();
+                userName.textContent = (userProfile.name || Auth.getCurrentUser()) + '님';
+                if (document.getElementById('loginBtn')) {
+                    document.getElementById('loginBtn').style.display = 'none';
+                }
+            } else {
+                if (document.getElementById('loginBtn')) {
+                    document.getElementById('loginBtn').style.display = 'inline-flex';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

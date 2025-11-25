@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Portal | 메인</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Barun+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-home">
+    <header class="site-header site-header--home">
+        <div class="brand">
+            <span class="brand-mark"><span class="m-letter">m</span><span class="tm-symbol">®</span></span>
+            <div>
+                <p class="brand-label">맑은소프트</p>
+                <p class="brand-sub">영업 지원 포털</p>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-pill active">홈</a>
+            <a href="estimate.html" class="nav-pill">견적 작성</a>
+            <a href="estimate_list.html" class="nav-pill">진행현황</a>
+        </nav>
+
+        <div class="header-cta">
+            <a class="btn btn-icon" href="assets/회사소개서.pdf" download>
+                <span class="icon icon-download"></span>
+                회사소개서
+            </a>
+            <div id="userInfo" style="display: none;">
+                <a id="userName" href="profile.html" style="margin-right: 1rem; text-decoration: none; color: inherit; cursor: pointer;"></a>
+                <button type="button" class="btn secondary" onclick="Auth.logout()">로그아웃</button>
+            </div>
+            <a id="loginBtn" href="login.html" class="btn secondary" style="margin-left: 1rem;">로그인</a>
+        </div>
+    </header>
+
+    <main class="product-section">
+        <div class="section-head">
+            <div>
+                <p class="eyebrow">Sales Enablement</p>
+                <h1>상품별 자료와 데모를 한 번에</h1>
+                <p>제안서, 요금, 데모, 고객사 사례를 바로 확인하고 영업 대응 속도를 높이세요.</p>
+            </div>
+        </div>
+
+        <div id="productGrid" class="product-grid"></div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (Auth.isAuthenticated()) {
+                document.getElementById('userInfo').style.display = 'flex';
+                const userName = document.getElementById('userName');
+                // 프로필 정보에서 이름 가져오기
+                const profileData = localStorage.getItem(`profile_${Auth.getCurrentUser()}`);
+                if (profileData) {
+                    const profile = JSON.parse(profileData);
+                    userName.textContent = (profile.name || Auth.getCurrentUser()) + '님';
+                } else {
+                    userName.textContent = Auth.getCurrentUser() + '님';
+                }
+                document.getElementById('loginBtn').style.display = 'none';
+            } else {
+                document.getElementById('userInfo').style.display = 'none';
+                document.getElementById('loginBtn').style.display = 'inline-flex';
+            }
+        });
+    </script>
+</body>
+</html>

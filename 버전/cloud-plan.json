@@ -1,0 +1,357 @@
+{
+    "plans": [
+        {
+            "id": "t-starter",
+            "name": "T-스타터",
+            "category": "트래픽 무제한",
+            "videoMonthlyTransfer": "무제한",
+            "cumulativeMembers": "2,000명",
+            "videoStorageSpace": "100GB",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "미제공",
+                "trainingSemesterFunction": "미제공",
+                "instructorSettlementManagement": "미제공",
+                "pointFunction": "미제공",
+                "learningOnlyAPP": "미제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "700원",
+                "transferVolumePer1GB": "무제한"
+            },
+            "securityPlayer": "별도 문의"
+        },
+        {
+            "id": "t-standard",
+            "name": "T-스탠다드",
+            "category": "트래픽 무제한",
+            "videoMonthlyTransfer": "무제한",
+            "cumulativeMembers": "3,000명",
+            "videoStorageSpace": "150GB",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "제공",
+                "trainingSemesterFunction": "제공",
+                "instructorSettlementManagement": "제공",
+                "pointFunction": "제공",
+                "learningOnlyAPP": "제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "600원 (15% 할인)",
+                "transferVolumePer1GB": "무제한"
+            },
+            "securityPlayer": "별도 문의"
+        },
+        {
+            "id": "t-professional",
+            "name": "T-프로페셔널",
+            "category": "트래픽 무제한",
+            "videoMonthlyTransfer": "무제한",
+            "cumulativeMembers": "5,000명",
+            "videoStorageSpace": "200GB",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "제공",
+                "trainingSemesterFunction": "제공",
+                "instructorSettlementManagement": "제공",
+                "pointFunction": "제공",
+                "learningOnlyAPP": "제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "500원 (30% 할인)",
+                "transferVolumePer1GB": "무제한"
+            },
+            "securityPlayer": "별도 문의"
+        },
+        {
+            "id": "t-enterprise",
+            "name": "T-엔터프라이즈",
+            "category": "트래픽 무제한",
+            "videoMonthlyTransfer": "별도 문의",
+            "cumulativeMembers": "별도 문의",
+            "videoStorageSpace": "별도 문의",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "제공",
+                "trainingSemesterFunction": "제공",
+                "instructorSettlementManagement": "제공",
+                "pointFunction": "제공",
+                "learningOnlyAPP": "제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "별도 문의",
+                "transferVolumePer1GB": "별도 문의"
+            },
+            "securityPlayer": "별도 문의"
+        },
+        {
+            "id": "m-starter",
+            "name": "M-스타터",
+            "category": "회원수 무제한",
+            "videoMonthlyTransfer": "500GB",
+            "cumulativeMembers": "무제한",
+            "videoStorageSpace": "50GB",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "미제공",
+                "trainingSemesterFunction": "미제공",
+                "instructorSettlementManagement": "미제공",
+                "pointFunction": "미제공",
+                "learningOnlyAPP": "미제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "1,000원",
+                "transferVolumePer1GB": "500원"
+            },
+            "securityPlayer": "별도 문의"
+        },
+        {
+            "id": "m-standard",
+            "name": "M-스탠다드",
+            "category": "회원수 무제한",
+            "videoMonthlyTransfer": "1,000GB",
+            "cumulativeMembers": "무제한",
+            "videoStorageSpace": "100GB",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "제공",
+                "trainingSemesterFunction": "제공",
+                "instructorSettlementManagement": "제공",
+                "pointFunction": "제공",
+                "learningOnlyAPP": "제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "700원 (30% 할인)",
+                "transferVolumePer1GB": "500원"
+            },
+            "securityPlayer": "별도 문의"
+        },
+        {
+            "id": "m-professional",
+            "name": "M-프로페",
+            "category": "회원수 무제한",
+            "videoMonthlyTransfer": "2,000GB",
+            "cumulativeMembers": "무제한",
+            "videoStorageSpace": "200GB",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "제공",
+                "trainingSemesterFunction": "제공",
+                "instructorSettlementManagement": "제공",
+                "pointFunction": "제공",
+                "learningOnlyAPP": "제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "500원 (50% 할인)",
+                "transferVolumePer1GB": "300원 (40% 할인)"
+            },
+            "securityPlayer": "별도 문의"
+        },
+        {
+            "id": "m-enterprise",
+            "name": "M-엔터프라이즈",
+            "category": "회원수 무제한",
+            "videoMonthlyTransfer": "별도 문의",
+            "cumulativeMembers": "별도 문의",
+            "videoStorageSpace": "별도 문의",
+            "webTraffic": "무제한",
+            "basicServices": {
+                "domainSecuritySSL": "제공",
+                "customerSupportUpdates": "제공",
+                "personalInformationProtection": "제공"
+            },
+            "additionalServices": {
+                "miricanvas": "제공",
+                "realtimeLiveLecture": "제공",
+                "multipleCertificates": "제공",
+                "automaticLearningEncouragement": "제공",
+                "bookStoreFunction": "제공",
+                "searchEngineOptimization": "제공",
+                "regularSubscription": "제공",
+                "trainingSemesterFunction": "제공",
+                "instructorSettlementManagement": "제공",
+                "pointFunction": "제공",
+                "learningOnlyAPP": "제공"
+            },
+            "paidAdditionalServices": {
+                "dataMigration": "별도 문의",
+                "adConversionScript": "별도 문의",
+                "socialLogin": {
+                    "naver": "100,000원",
+                    "google": "100,000원",
+                    "kakao": "50,000원",
+                    "facebook": "50,000원"
+                },
+                "ssoIntegration": "500,000원",
+                "apiIntegration": "500,000원"
+            },
+            "additionalCharges": {
+                "storageSpacePer1GB": "별도 문의",
+                "transferVolumePer1GB": "별도 문의"
+            },
+            "securityPlayer": "별도 문의"
+        }
+    ]
+}
+

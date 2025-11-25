@@ -1,0 +1,61 @@
+[
+    {
+        "id": "001",
+        "name": "범용 LMS",
+        "proposalFile": "범용 LMS 제안서.pdf",
+        "homepageUrl": "https://www.malgnsoft.com/cloud/cloud.jsp#stickyMenu",
+        "pricingUrl": "https://www.malgnsoft.com/cloud/price.jsp#stickyMenu",
+        "demoAdminUrl": "https://kjh.malgnlms.com/sysop/index.jsp",
+        "demoInstructorUrl": "",
+        "demoLearnerUrl": "https://stdemo.malgnlms.com/main/index.jsp",
+        "clients": [
+            { "name": "KOSSDA 교육", "url": "https://kossda.methods.snu.ac.kr/main/index.jsp" },
+            { "name": "제주관광공사", "url": "https://jacademy.ijto.or.kr/main/index.jsp" },
+            { "name": "코바코광고교육원", "url": "https://e-learning.kobaco.co.kr/main/index.jsp" }
+        ]
+    },
+    {
+        "id": "002",
+        "name": "공공 LMS",
+        "proposalFile": "공공 LMS.pdf",
+        "homepageUrl": "https://csap.malgnsoft.com/main/index.jsp",
+        "pricingUrl": "https://csap.malgnsoft.com/main/index.jsp#price",
+        "demoAdminUrl": "https://nlms.malgnsoft.com/sysop/main/login.jsp",
+        "demoInstructorUrl": "",
+        "demoLearnerUrl": "https://nlms.malgnsoft.com/main/index.jsp",
+        "clients": [
+            { "name": "국가건강정보포털", "url": "https://www.eduhealthinfo.com/main/index.jsp" },
+            { "name": "종로구청", "url": "https://mtr.jongno.go.kr/main/index.jsp" }
+        ]
+    },
+    {
+        "id": "003",
+        "name": "환급 LMS",
+        "proposalFile": "환급 LMS.pdf",
+        "homepageUrl": "https://www.malgnsoft.com/cloud/process.jsp#stickyMenu",
+        "pricingUrl": "https://www.malgnsoft.com/cloud/price.jsp#stickyMenu",
+        "demoAdminUrl": "https://kjh.malgnlms.com/sysop/index.jsp",
+        "demoInstructorUrl": "https://hdemo.malgn.co.kr/tutor/login.jsp?",
+        "demoLearnerUrl": "https://stdemo.malgnlms.com/main/index.jsp",
+        "clients": [
+            { "name": "에듀야원격평생교육원", "url": "https://www.eduyaa.net/main/index.jsp" },
+            { "name": "안전보건진흥원", "url": "https://www.shaiedu.or.kr/main/index.jsp" }
+        ]
+    },
+    {
+        "id": "004",
+        "name": "글로벌 LMS",
+        "proposalFile": "글로벌 LMS.pdf",
+        "homepageUrl": "https://global.malgnsoft.com/",
+        "pricingUrl": "https://global.malgnsoft.com#service",
+        "demoAdminUrl": "https://sample.gkr.malgnlms.com/sysop/index.jsp",
+        "demoInstructorUrl": "",
+        "demoLearnerUrl": "https://demo.gkr.malgnlms.com/main/index.jsp",
+        "clients": [
+            { "name": "FIELD", "url": "https://www.akfield.com/main/index.jsp" },
+            { "name": "주식회사 모티브랩", "url": "https://www.nestlab.kr/main/index.jsp" },
+            { "name": "한컴지니케이", "url": "https://www.geniekedu.com/main/index.jsp" }
+        ]
+    }
+]
+

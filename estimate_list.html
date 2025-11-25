@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적 진행현황 | 영업 지원 포털</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Barun+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header site-header--home">
+        <a href="index.html" class="brand" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
+            <span class="brand-mark"><span class="m-letter">m</span><span class="tm-symbol">®</span></span>
+            <div>
+                <p class="brand-label">맑은소프트</p>
+                <p class="brand-sub">영업 지원 포털</p>
+            </div>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-pill">홈</a>
+            <a href="estimate.html" class="nav-pill">견적 작성</a>
+            <a href="estimate_list.html" class="nav-pill active">진행현황</a>
+        </nav>
+
+        <div class="header-cta">
+            <a class="btn btn-icon" href="assets/회사소개서.pdf" download>
+                <span class="material-icons">download</span>
+                회사소개서
+            </a>
+            <a class="btn btn-icon" href="https://www.malgnsoft.com/" target="_blank" rel="noopener noreferrer">
+                <span class="material-icons">home</span>
+                대표 홈페이지
+            </a>
+            <a class="btn btn-icon" href="https://help.malgnsoft.com/main/index.jsp" target="_blank" rel="noopener noreferrer">
+                <span class="material-icons">headset_mic</span>
+                고객센터
+            </a>
+            <div id="userInfo" style="display: none;">
+                <a id="userName" href="profile.html" style="margin-right: 1rem; text-decoration: none; color: inherit; cursor: pointer;"></a>
+                <button type="button" class="btn secondary" onclick="Auth.logout()">로그아웃</button>
+            </div>
+            <a id="loginBtn" href="login.html" class="btn secondary" style="margin-left: 1rem;">로그인</a>
+        </div>
+    </header>
+
+    <main class="estimate-main">
+        <div class="page-header">
+            <h1>견적 진행현황</h1>
+        </div>
+
+        <!-- 검색 영역 -->
+        <div class="search-section">
+            <div class="search-left">
+                <select id="purposeFilter" class="search-filter">
+                    <option value="">전체 사용 목적</option>
+                    <option value="학원/학교">학원/학교</option>
+                    <option value="개인 사업자">개인 사업자</option>
+                    <option value="내부 교육용">내부 교육용</option>
+                    <option value="내일배움카드">내일배움카드</option>
+                    <option value="공공기관 사용">공공기관 사용</option>
+                    <option value="기타">기타</option>
+                </select>
+                <select id="managerFilter" class="search-filter">
+                    <option value="">전체 견적 담당자</option>
+                </select>
+                <div class="search-input-group">
+                    <input type="text" id="textSearch" class="search-input" placeholder="고객사명, 견적서명 검색" />
+                    <button type="button" id="searchBtn" class="search-btn">
+                        <span class="material-icons">search</span>
+                    </button>
+                </div>
+            </div>
+            <div class="search-right">
+                <label class="checkbox-label-inline">
+                    <input type="checkbox" id="myEstimatesOnly" />
+                    <span>내 견적서만 보기</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 현황 탭 -->
+        <div class="status-tabs">
+            <button type="button" class="status-tab active" data-status="">전체</button>
+            <button type="button" class="status-tab" data-status="draft">임시저장</button>
+            <button type="button" class="status-tab" data-status="received">접수</button>
+            <button type="button" class="status-tab" data-status="writing">작성중</button>
+            <button type="button" class="status-tab" data-status="sent">발송 완료</button>
+            <button type="button" class="status-tab" data-status="negotiating">협의 중</button>
+            <button type="button" class="status-tab" data-status="confirmed">계약 확정</button>
+            <button type="button" class="status-tab" data-status="completed">계약완료</button>
+        </div>
+
+        <div class="estimate-list-container">
+            <table class="estimate-list-table">
+                <thead>
+                    <tr>
+                        <th>순번</th>
+                        <th>등록일자</th>
+                        <th>견적 유효일자</th>
+                        <th>현황</th>
+                        <th>고객사명</th>
+                        <th>견적서명</th>
+                        <th>사용 목적</th>
+                        <th>계약 총액<br>(VAT 별도)</th>
+                        <th>견적 담당자</th>
+                    </tr>
+                </thead>
+                <tbody id="estimateListBody">
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 2rem; color: var(--muted);">
+                            저장된 견적서가 없습니다.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="paginationContainer" class="pagination-container"></div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="estimate_list.js"></script>
+</body>
+</html>

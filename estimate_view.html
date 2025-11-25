@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>견적서 상세 | 영업 지원 포털</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Barun+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="site-header site-header--home">
+        <a href="index.html" class="brand" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
+            <span class="brand-mark"><span class="m-letter">m</span><span class="tm-symbol">®</span></span>
+            <div>
+                <p class="brand-label">맑은소프트</p>
+                <p class="brand-sub">영업 지원 포털</p>
+            </div>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-pill">홈</a>
+            <a href="estimate.html" class="nav-pill">견적 작성</a>
+            <a href="estimate_list.html" class="nav-pill active">진행현황</a>
+        </nav>
+
+        <div class="header-cta">
+            <a class="btn btn-icon" href="assets/회사소개서.pdf" download>
+                <span class="material-icons">download</span>
+                회사소개서
+            </a>
+            <a class="btn btn-icon" href="https://www.malgnsoft.com/" target="_blank" rel="noopener noreferrer">
+                <span class="material-icons">home</span>
+                대표 홈페이지
+            </a>
+            <a class="btn btn-icon" href="https://help.malgnsoft.com/main/index.jsp" target="_blank" rel="noopener noreferrer">
+                <span class="material-icons">headset_mic</span>
+                고객센터
+            </a>
+            <div id="userInfo" style="display: none;">
+                <a id="userName" href="profile.html" style="margin-right: 1rem; text-decoration: none; color: inherit; cursor: pointer;"></a>
+                <button type="button" class="btn secondary" onclick="Auth.logout()">로그아웃</button>
+            </div>
+            <a id="loginBtn" href="login.html" class="btn secondary" style="margin-left: 1rem;">로그인</a>
+        </div>
+    </header>
+
+    <main class="estimate-main">
+        <div class="page-header">
+            <h1>견적서 상세</h1>
+        </div>
+
+        <!-- 고객사 정보 -->
+        <section class="customer-info-section" style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;">
+            <div style="flex: 1;">
+                <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1f2937;">고객사 정보</h2>
+                <div class="form-grid">
+                    <div>
+                        <strong>고객사명:</strong> <span id="viewCustomerName">-</span>
+                    </div>
+                    <div>
+                        <strong>담당자명:</strong> <span id="viewCustomerManager">-</span>
+                    </div>
+                    <div>
+                        <strong>직책:</strong> <span id="viewCustomerPosition">-</span>
+                    </div>
+                    <div>
+                        <strong>연락처:</strong> <span id="viewCustomerContact">-</span>
+                    </div>
+                    <div>
+                        <strong>이메일:</strong> <span id="viewCustomerEmail">-</span>
+                    </div>
+                    <div>
+                        <strong>사용 목적:</strong> <span id="viewPurpose">-</span>
+                    </div>
+                    <div>
+                        <strong>등록일자:</strong> <span id="viewRegisteredDate">-</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <strong>현황:</strong> 
+                        <select id="viewStatus" class="status-select">
+                            <option value="draft">임시 저장</option>
+                            <option value="received">접수</option>
+                            <option value="writing">작성중</option>
+                            <option value="sent">발송 완료</option>
+                            <option value="negotiating">협의 중</option>
+                            <option value="confirmed">계약 확정</option>
+                            <option value="completed">계약완료</option>
+                        </select>
+                        <button type="button" class="btn secondary" id="updateStatusBtn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">변경</button>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: flex-start;">
+                <button type="button" class="btn primary" id="previewBtn">미리보기</button>
+                <button type="button" class="btn primary" id="editBtn">견적서 수정</button>
+                <button type="button" class="btn secondary" id="deleteBtn">삭제</button>
+                <a href="estimate_list.html" class="btn secondary">목록으로</a>
+            </div>
+        </section>
+
+        <div class="estimate-form" style="pointer-events: none;">
+            <!-- 견적서 헤더 -->
+            <section class="quote-header">
+                <div class="quote-header-top">
+                    <div class="quote-logo">
+                        <span class="brand-mark"><span class="m-letter">m</span><span class="tm-symbol">®</span></span>
+                        <div>
+                            <p class="brand-label">맑은소프트</p>
+                            <p class="brand-sub">보통 사람들이 만드는 위대한 기업</p>
+                        </div>
+                    </div>
+                    <h1>견적서</h1>
+                </div>
+                <div class="quote-company-info">
+                    <p>서울특별시 구로구 디지털로 288</p>
+                    <p>tel. 02-857-5445 | fax. 02-6442-7010</p>
+                    <p>업태/종목_ 서비스/소프트웨어·원격교육컨텐츠개발및공급</p>
+                    <p>사업자등록번호_ 119-86-39050 | 상호_ ㈜맑은소프트</p>
+                    <p>대표자_ 하근호</p>
+                </div>
+            </section>
+
+            <!-- 수신 정보 -->
+            <section class="form-section">
+                <h2>수신</h2>
+                <div class="form-grid">
+                    <div>
+                        <strong>수신자:</strong> <span id="viewRecipient">-</span>
+                    </div>
+                    <div>
+                        <strong>참조:</strong> <span id="viewReference">-</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 견적 기본 정보 -->
+            <section class="form-section">
+                <h2>견적 기본 정보</h2>
+                <div class="form-grid">
+                    <div>
+                        <strong>견적명:</strong> <span id="viewQuoteName" style="font-size: 1.1rem; font-weight: 700; color: #1f6bff;">-</span>
+                    </div>
+                    <div>
+                        <strong>견적일자:</strong> <span id="viewQuoteDate">-</span>
+                    </div>
+                </div>
+                <div class="quote-total">
+                    <div class="total-item">
+                        <span>계약 총액</span>
+                        <span id="viewTotalWithoutVAT">0원 (VAT 별도)</span>
+                    </div>
+                    <div class="total-item">
+                        <span></span>
+                        <span id="viewTotalWithVAT">0원 (VAT 포함)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 견적 항목 -->
+            <section class="form-section">
+                <h2>견적 항목</h2>
+                <div class="quote-items-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 30px;"></th>
+                                <th>구분</th>
+                                <th>세부 항목</th>
+                                <th class="period-col">기본계약<br>기간(월)</th>
+                                <th>수량</th>
+                                <th>단가</th>
+                                <th>공급가액</th>
+                                <th>비고</th>
+                            </tr>
+                        </thead>
+                        <tbody id="viewQuoteItems">
+                            <tr>
+                                <td colspan="8" style="text-align: center; padding: 2rem; color: var(--muted);">
+                                    견적 항목이 없습니다.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="quote-items-total">
+                    <div class="items-total-row">
+                        <span>계약 총액</span>
+                        <span id="viewTableTotal">0원</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 결제 및 담당자 안내 -->
+            <section class="form-section">
+                <h2>결제 및 담당자 안내</h2>
+                <div class="form-grid">
+                    <label>
+                        결제 정보
+                        <textarea name="paymentInfo" readonly id="viewPaymentInfo" style="background: #f9fafb;"></textarea>
+                    </label>
+                    <label>
+                        입금 관련
+                        <textarea name="depositInfo" readonly id="viewDepositInfo" style="background: #f9fafb;"></textarea>
+                    </label>
+                </div>
+                <div class="form-grid">
+                    <label>
+                        견적 담당자
+                        <input type="text" name="managerName" readonly id="viewManagerName" style="background: #f9fafb;" />
+                    </label>
+                    <label>
+                        직책
+                        <input type="text" name="managerPosition" readonly id="viewManagerPosition" style="background: #f9fafb;" />
+                    </label>
+                    <label>
+                        연락처
+                        <input type="text" name="managerContact" readonly id="viewManagerContact" style="background: #f9fafb;" />
+                    </label>
+                    <label>
+                        이메일
+                        <input type="email" name="managerEmail" readonly id="viewManagerEmail" style="background: #f9fafb;" />
+                    </label>
+                </div>
+                <div class="form-grid">
+                    <label>
+                        유효기간
+                        <textarea name="validityPeriod" readonly id="viewValidityPeriod" style="background: #f9fafb;"></textarea>
+                    </label>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="estimate_view.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (Auth.isAuthenticated()) {
+                document.getElementById('userInfo').style.display = 'flex';
+                const userName = document.getElementById('userName');
+                // 프로필 정보에서 이름 가져오기
+                const profileData = localStorage.getItem(`profile_${Auth.getCurrentUser()}`);
+                if (profileData) {
+                    const profile = JSON.parse(profileData);
+                    userName.textContent = (profile.name || Auth.getCurrentUser()) + '님';
+                } else {
+                    userName.textContent = Auth.getCurrentUser() + '님';
+                }
+                document.getElementById('loginBtn').style.display = 'none';
+            } else {
+                document.getElementById('userInfo').style.display = 'none';
+                document.getElementById('loginBtn').style.display = 'inline-flex';
+            }
+        });
+    </script>
+</body>
+</html>

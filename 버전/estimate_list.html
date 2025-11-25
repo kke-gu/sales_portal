@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적 진행현황 | 영업 지원 포털</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Barun+Gothic:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html" class="brand">
+            <span class="brand-mark"><span class="m-letter">m</span><span class="tm-symbol">®</span></span>
+            <div>
+                <span class="brand-label">영업 지원 포털</span>
+            </div>
+        </a>
+        <nav class="site-nav">
+            <a href="index.html">홈</a>
+            <a href="estimate.html">견적 작성</a>
+            <a href="estimate_list.html" class="active">진행현황</a>
+        </nav>
+        <div class="header-cta">
+            <a href="회사소개서.pdf" download class="btn ghost">
+                <span>📄</span> 회사소개서
+            </a>
+            <div id="authSection">
+                <a href="login.html" class="btn primary" id="loginBtn">로그인</a>
+                <div id="userSection" style="display: none;">
+                    <a href="profile.html" class="user-name" id="userName"></a>
+                    <button class="btn ghost" id="logoutBtn">로그아웃</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="estimate-main">
+        <div class="page-header">
+            <h1>견적 진행현황</h1>
+        </div>
+
+        <div class="estimate-list-container">
+            <table class="estimate-list-table">
+                <thead>
+                    <tr>
+                        <th>순번</th>
+                        <th>등록일자</th>
+                        <th>견적 유효일자</th>
+                        <th>단계</th>
+                        <th>고객사명</th>
+                        <th>견적서명</th>
+                        <th>사용 목적</th>
+                        <th>계약 총액<br>(VAT 별도)</th>
+                        <th>견적 담당자</th>
+                    </tr>
+                </thead>
+                <tbody id="estimateListBody">
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 2rem; color: var(--muted);">
+                            저장된 견적서가 없습니다.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="estimate_list.js"></script>
+</body>
+</html>

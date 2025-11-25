@@ -1,0 +1,14 @@
+[
+    {
+        "id": "EST-2025-001",
+        "clientName": "ABC테크",
+        "contactPerson": "김민수",
+        "productId": "svc-analytics",
+        "productName": "데이터 분석 플랫폼",
+        "amount": 42000000,
+        "status": "검토중",
+        "updatedAt": "2025-11-20",
+        "note": "데모 일정 11/25 예정"
+    }
+]
+

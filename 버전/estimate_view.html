@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Portal | 견적 상세</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Barun+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="site-header site-header--home">
+        <div class="brand">
+            <span class="brand-mark"><span class="m-letter">m</span><span class="tm-symbol">®</span></span>
+            <div>
+                <p class="brand-label">맑은소프트</p>
+                <p class="brand-sub">영업 지원 포털</p>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-pill">홈</a>
+            <a href="estimate.html" class="nav-pill">견적 작성</a>
+            <a href="estimate_list.html" class="nav-pill active">진행현황</a>
+        </nav>
+
+        <div class="header-cta">
+            <a class="btn btn-icon" href="assets/회사소개서.pdf" download>
+                <span class="icon icon-download"></span>
+                회사소개서
+            </a>
+            <div id="userInfo" style="display: none;">
+                <a id="userName" href="profile.html" style="margin-right: 1rem; text-decoration: none; color: inherit; cursor: pointer;"></a>
+                <button type="button" class="btn secondary" onclick="Auth.logout()">로그아웃</button>
+            </div>
+            <a id="loginBtn" href="login.html" class="btn secondary" style="display: none; margin-left: 1rem;">로그인</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="detail-card">
+            <h2>고객/제품 정보</h2>
+            <dl id="detailInfo">
+                <dt>고객사</dt>
+                <dd>-</dd>
+                <dt>담당자</dt>
+                <dd>-</dd>
+                <dt>서비스</dt>
+                <dd>-</dd>
+                <dt>금액</dt>
+                <dd>-</dd>
+            </dl>
+        </section>
+
+        <section class="detail-card">
+            <h2>타임라인</h2>
+            <ul id="timeline">
+                <li>이력 정보를 불러오는 중...</li>
+            </ul>
+        </section>
+
+        <section class="detail-card">
+            <h2>메모</h2>
+            <p id="memo">추가 메모가 없습니다.</p>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        Auth.requireAuth();
+    </script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (Auth.isAuthenticated()) {
+                document.getElementById('userInfo').style.display = 'flex';
+                const userName = document.getElementById('userName');
+                const profileData = localStorage.getItem(`profile_${Auth.getCurrentUser()}`);
+                if (profileData) {
+                    const profile = JSON.parse(profileData);
+                    userName.textContent = (profile.name || Auth.getCurrentUser()) + '님';
+                } else {
+                    userName.textContent = Auth.getCurrentUser() + '님';
+                }
+                if (document.getElementById('loginBtn')) {
+                    document.getElementById('loginBtn').style.display = 'none';
+                }
+            } else {
+                if (document.getElementById('loginBtn')) {
+                    document.getElementById('loginBtn').style.display = 'inline-flex';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
