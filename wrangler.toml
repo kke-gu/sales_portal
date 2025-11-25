@@ -1,20 +1,14 @@
 name = "sales-portal"
-main = "src/index.js"
 compatibility_date = "2024-01-01"
+
+# Cloudflare Pages 설정 (정적 파일 서빙용)
+pages_build_output_dir = "."
 
 [env.production]
 name = "sales-portal"
 
 [env.staging]
 name = "sales-portal-staging"
-
-# 빌드 설정
-[build]
-command = ""
-cwd = "."
-
-# Pages 설정 (정적 파일 서빙용)
-pages_build_output_dir = "."
 
 # 환경 변수 (필요시 추가)
 # [vars]
