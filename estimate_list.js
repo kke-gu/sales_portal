@@ -114,24 +114,30 @@ function initAuth() {
     const userInfo = document.getElementById('userInfo');
     const loginBtn = document.getElementById('loginBtn');
     const userName = document.getElementById('userName');
+    const mobileUserInfo = document.getElementById('mobileUserInfo');
+    const mobileUserName = document.getElementById('mobileUserName');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
 
     // 로그인 상태 확인
     if (Auth.isAuthenticated()) {
         if (userInfo) userInfo.style.display = 'flex';
+        // 프로필 정보에서 이름 가져오기
+        const profileData = localStorage.getItem(`profile_${Auth.getCurrentUser()}`);
+        const displayName = profileData ? (JSON.parse(profileData).name || Auth.getCurrentUser()) : Auth.getCurrentUser();
         if (userName) {
-            // 프로필 정보에서 이름 가져오기
-            const profileData = localStorage.getItem(`profile_${Auth.getCurrentUser()}`);
-            if (profileData) {
-                const profile = JSON.parse(profileData);
-                userName.textContent = (profile.name || Auth.getCurrentUser()) + '님';
-            } else {
-                userName.textContent = Auth.getCurrentUser() + '님';
-            }
+            userName.textContent = displayName + '님';
+        }
+        if (mobileUserInfo && mobileUserName) {
+            mobileUserInfo.style.display = 'flex';
+            mobileUserName.textContent = displayName + '님';
         }
         if (loginBtn) loginBtn.style.display = 'none';
+        if (mobileLoginBtn) mobileLoginBtn.style.display = 'none';
     } else {
         if (userInfo) userInfo.style.display = 'none';
         if (loginBtn) loginBtn.style.display = 'inline-flex';
+        if (mobileUserInfo) mobileUserInfo.style.display = 'none';
+        if (mobileLoginBtn) mobileLoginBtn.style.display = 'inline-flex';
     }
 }
 
@@ -213,6 +219,14 @@ function loadEstimateList() {
                 </td>
             </tr>
         `;
+        const cardsContainer = document.getElementById('estimateListCards');
+        if (cardsContainer) {
+            cardsContainer.innerHTML = `
+                <div style="text-align: center; padding: 3rem 1rem; color: var(--muted);">
+                    조건에 맞는 견적서가 없습니다.
+                </div>
+            `;
+        }
         renderPagination(0, 0);
         return;
     }
@@ -231,15 +245,24 @@ function loadEstimateList() {
                 </td>
             </tr>
         `;
+        const cardsContainer = document.getElementById('estimateListCards');
+        if (cardsContainer) {
+            cardsContainer.innerHTML = `
+                <div style="text-align: center; padding: 3rem 1rem; color: var(--muted);">
+                    조건에 맞는 견적서가 없습니다.
+                </div>
+            `;
+        }
         renderPagination(totalPages, totalCount);
         return;
     }
 
-    tbody.innerHTML = paginatedEstimates.map((estimate, index) => {
-        // 역순 순번 계산 (전체 개수에서 역순으로)
+    // 데이터 포맷팅 함수
+    function formatEstimateData(estimate, index) {
         const cumulativeIndex = startIndex + index;
         const reverseIndex = totalCount - cumulativeIndex;
-        // 등록일자 포맷팅 (시간 포함)
+        
+        // 등록일자 포맷팅
         let registeredDate = '-';
         if (estimate.registeredDate) {
             const date = new Date(estimate.registeredDate);
@@ -261,30 +284,25 @@ function loadEstimateList() {
             }).replace(/\./g, '-').replace(/,/g, '').replace(/\s/g, ' ');
         }
         
-        // 견적 유효일자 계산 (견적일자 + 7일 또는 validityPeriod에서 추출)
+        // 견적 유효일자 계산
         let validDate = '-';
         if (estimate.quoteDate) {
             const quoteDate = new Date(estimate.quoteDate);
             quoteDate.setDate(quoteDate.getDate() + 7);
             validDate = quoteDate.toISOString().split('T')[0];
         } else if (estimate.validityPeriod) {
-            // validityPeriod에서 날짜 추출 시도
             const dateMatch = estimate.validityPeriod.match(/(\d{4}[-.\/]\d{1,2}[-.\/]\d{1,2})/);
             if (dateMatch) {
                 validDate = dateMatch[1].replace(/[.\/]/g, '-');
             }
         }
 
-        // 현황 표시
         const statusText = getStatusText(estimate.status || 'draft');
         const statusClass = getStatusClass(estimate.status || 'draft');
-
-        // 사용 목적 표시
         const purposeText = Array.isArray(estimate.purpose) && estimate.purpose.length > 0 
             ? estimate.purpose.join(', ') 
             : '-';
 
-        // 계약 총액 (VAT 별도)
         let totalAmount = '-';
         if (estimate.totalAmount) {
             totalAmount = estimate.totalAmount;
@@ -303,30 +321,91 @@ function loadEstimateList() {
             totalAmount = total.toLocaleString() + '원';
         }
 
-        // 견적 담당자
         const managerName = estimate.managerName || '-';
         const managerPosition = estimate.managerPosition ? `(${estimate.managerPosition})` : '';
         const managerText = managerName !== '-' ? `${managerName} ${managerPosition}` : '-';
 
         const quoteNameDisplay = estimate.quoteName || '-';
         const quoteNameLink = quoteNameDisplay !== '-' 
-            ? `<a href="estimate_view.html?id=${estimate.id}" style="color: var(--primary); text-decoration: none; font-weight: 500;" onclick="event.stopPropagation();">${quoteNameDisplay}</a>`
+            ? `<a href="estimate_view.html?id=${estimate.id}" style="color: var(--primary); text-decoration: none; font-weight: 500;">${quoteNameDisplay}</a>`
             : quoteNameDisplay;
 
+        return {
+            reverseIndex,
+            registeredDate,
+            validDate,
+            statusText,
+            statusClass,
+            customerName: estimate.customerName || '-',
+            quoteNameLink,
+            purposeText,
+            totalAmount,
+            managerText
+        };
+    }
+
+    // 테이블 렌더링
+    tbody.innerHTML = paginatedEstimates.map((estimate, index) => {
+        const data = formatEstimateData(estimate, index);
         return `
             <tr>
-                <td>${reverseIndex}</td>
-                <td>${registeredDate}</td>
-                <td>${validDate}</td>
-                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
-                <td>${estimate.customerName || '-'}</td>
-                <td>${quoteNameLink}</td>
-                <td>${purposeText}</td>
-                <td style="text-align: right;">${totalAmount}</td>
-                <td>${managerText}</td>
+                <td>${data.reverseIndex}</td>
+                <td>${data.registeredDate}</td>
+                <td>${data.validDate}</td>
+                <td><span class="status-badge ${data.statusClass}">${data.statusText}</span></td>
+                <td>${data.customerName}</td>
+                <td>${data.quoteNameLink}</td>
+                <td>${data.purposeText}</td>
+                <td style="text-align: right;">${data.totalAmount}</td>
+                <td>${data.managerText}</td>
             </tr>
         `;
     }).join('');
+
+    // 카드 렌더링 (모바일용)
+    const cardsContainer = document.getElementById('estimateListCards');
+    if (cardsContainer) {
+        cardsContainer.innerHTML = paginatedEstimates.map((estimate, index) => {
+            const data = formatEstimateData(estimate, index);
+            return `
+                <div class="estimate-card">
+                    <div class="estimate-card-header">
+                        <div class="estimate-card-title">
+                            <span class="estimate-card-number">#${data.reverseIndex}</span>
+                            <span class="status-badge ${data.statusClass}">${data.statusText}</span>
+                        </div>
+                        <div class="estimate-card-date">${data.registeredDate}</div>
+                    </div>
+                    <div class="estimate-card-body">
+                        <div class="estimate-card-row">
+                            <span class="estimate-card-label">견적서명</span>
+                            <span class="estimate-card-value">${data.quoteNameLink}</span>
+                        </div>
+                        <div class="estimate-card-row">
+                            <span class="estimate-card-label">고객사명</span>
+                            <span class="estimate-card-value">${data.customerName}</span>
+                        </div>
+                        <div class="estimate-card-row">
+                            <span class="estimate-card-label">견적 유효일자</span>
+                            <span class="estimate-card-value">${data.validDate}</span>
+                        </div>
+                        <div class="estimate-card-row">
+                            <span class="estimate-card-label">사용 목적</span>
+                            <span class="estimate-card-value">${data.purposeText}</span>
+                        </div>
+                        <div class="estimate-card-row">
+                            <span class="estimate-card-label">계약 총액</span>
+                            <span class="estimate-card-value estimate-card-amount">${data.totalAmount}</span>
+                        </div>
+                        <div class="estimate-card-row">
+                            <span class="estimate-card-label">견적 담당자</span>
+                            <span class="estimate-card-value">${data.managerText}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
     
     // 페이징 UI 렌더링
     renderPagination(totalPages, totalCount);

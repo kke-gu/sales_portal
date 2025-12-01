@@ -119,6 +119,29 @@ nav a,
     margin-right: 1rem;
 }
 
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text);
+    z-index: 200;
+    position: relative;
+}
+
+.mobile-header-cta {
+    display: none;
+}
+
+.mobile-menu-close {
+    display: none;
+}
+
+.mobile-menu-toggle .material-icons {
+    font-size: 28px;
+}
+
 .main-nav {
     display: flex;
     gap: 0.5rem;
@@ -238,6 +261,7 @@ nav a,
     word-wrap: normal;
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
     color: inherit;
     width: 18px;
@@ -298,6 +322,8 @@ main {
 
 .product-section {
     padding: 1rem 5vw 4rem;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 .section-head {
@@ -318,6 +344,14 @@ main {
     letter-spacing: -0.01em;
     margin-top: 0;
     margin-bottom: 0.25rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.section-head p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--muted);
 }
 
 .product-grid {
@@ -916,13 +950,61 @@ main {
     margin: 0.5rem 0;
 }
 
-@media (max-width: 1024px) {
+/* 태블릿 (768px - 1024px) - 견적서 페이지 */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .estimate-main {
+        padding: 1rem 4vw 3rem;
+    }
+
     .estimate-container {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .estimate-summary {
         position: static;
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .search-section {
+        flex-wrap: wrap;
+    }
+
+    .search-left {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .search-filter,
+    .search-input-group {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .quote-items-table {
+        overflow-x: auto;
+    }
+
+    .quote-total {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 데스크톱 (> 1024px) - 견적서 페이지 */
+@media (min-width: 1025px) {
+    .estimate-main {
+        padding: 2rem 5vw 4rem;
+    }
+
+    .estimate-container {
+        gap: 2rem;
     }
 }
 
@@ -1015,9 +1097,93 @@ dl {
     margin: 0;
 }
 
-@media (max-width: 1024px) {
+/* 태블릿 (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .section-head h1 {
+        font-size: 2rem;
+    }
+
+    .section-head p {
+        font-size: 1rem;
+    }
+
+    .product-section {
+        padding: 1rem 4vw 3rem;
+    }
+
+    .product-card {
+        padding: 1.25rem;
+        min-height: 300px;
+    }
+
+    .product-card h2 {
+        font-size: 1.15rem;
+    }
+
+    /* 견적서 페이지 태블릿 */
+    .estimate-main {
+        padding: 1.5rem 4vw 3rem;
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .search-section {
+        flex-wrap: wrap;
+    }
+
+    .search-left {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .search-right {
+        flex-shrink: 0;
+    }
+
+    .quote-items-table {
+        overflow-x: auto;
+    }
+
+    .estimate-list-table {
+        font-size: 0.9rem;
+    }
+
+    /* 태블릿에서는 테이블 표시 */
+    .desktop-table {
+        display: table;
+    }
+
+    .mobile-cards {
+        display: none;
+    }
+}
+
+/* 데스크톱 (> 1024px) */
+@media (min-width: 1025px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    @media (min-width: 1400px) {
+        .product-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .product-section {
+        padding: 2rem 5vw 5rem;
+    }
+
+    .section-head {
+        margin-bottom: 3rem;
     }
 }
 
@@ -1631,6 +1797,98 @@ textarea:invalid:not(:placeholder-shown) + .error-message {
     border-bottom: none;
 }
 
+/* 견적서 카드 스타일 (모바일용) */
+.estimate-list-cards {
+    display: none;
+}
+
+/* 데스크톱에서는 테이블 표시, 모바일 카드 숨김 */
+.desktop-table {
+    display: table;
+}
+
+.mobile-cards {
+    display: none;
+}
+
+.estimate-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+
+.estimate-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.estimate-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.estimate-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.estimate-card-number {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.estimate-card-date {
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.estimate-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.estimate-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.estimate-card-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+    min-width: 80px;
+    flex-shrink: 0;
+}
+
+.estimate-card-value {
+    font-size: 0.9rem;
+    color: var(--text);
+    text-align: right;
+    flex: 1;
+    word-break: break-word;
+}
+
+.estimate-card-amount {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
 /* 단계 배지 스타일 */
 .status-badge {
     display: inline-block;
@@ -1693,10 +1951,209 @@ textarea:invalid:not(:placeholder-shown) + .error-message {
     border-color: var(--primary);
 }
 
-@media (max-width: 768px) {
+/* 모바일 (< 768px) */
+@media (max-width: 767px) {
+    /* 모든 form-grid를 1열로 강제 적용 - 최우선 */
+    * .form-grid,
+    * .estimate-form .form-grid,
+    * .estimate-form .form-section .form-grid,
+    * form.estimate-form .form-grid,
+    * form#estimateForm .form-grid,
+    * .customer-info-section .form-grid,
+    * .estimate-form-wrapper .form-grid,
+    body .form-grid,
+    body .estimate-form .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        display: grid !important;
+    }
     .site-header {
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+        padding: 1rem 4vw;
+    }
+
+    .site-header--home {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5rem 2rem 2rem;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 150;
+        pointer-events: auto;
+        gap: 1rem;
+        overflow-y: auto;
+        border-right: 3px solid var(--border);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .mobile-menu-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        color: var(--text);
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.2s;
+        z-index: 151;
+    }
+    
+    .mobile-menu-close:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .mobile-menu-close .material-icons {
+        font-size: 28px;
+    }
+    
+    .mobile-header-cta {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+    }
+    
+    .mobile-header-cta .btn-icon {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+    }
+    
+    #mobileUserInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    
+    #mobileUserName {
+        text-align: center;
+        padding: 0.5rem;
+    }
+    
+    #mobileLoginBtn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .main-nav.mobile-open {
+        transform: translateX(0);
+    }
+    
+    /* 모바일 메뉴가 열렸을 때 햄버거 버튼 숨기기 */
+    .site-header.menu-open .mobile-menu-toggle,
+    .site-header:has(.main-nav.mobile-open) .mobile-menu-toggle {
+        display: none !important;
+    }
+
+    .nav-pill {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .mobile-header-cta {
+        display: flex;
+    }
+
+    .header-cta {
+        display: none;
+    }
+
+    .header-cta .btn-icon {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+    }
+
+    .brand {
+        flex-shrink: 1;
+    }
+
+    .brand-label {
+        font-size: 1rem;
+    }
+
+    .brand-sub {
+        font-size: 0.8rem;
+    }
+
+    .product-section {
+        padding: 1rem 4vw 3rem;
+    }
+
+    .section-head {
+        margin-bottom: 1.5rem;
+    }
+
+    .section-head h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-head p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .eyebrow {
+        font-size: 0.75rem;
+    }
+
+    .product-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+    }
+
+    .product-card {
+        padding: 1.25rem;
+        min-height: auto;
+        border-radius: 16px;
+    }
+
+    .product-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .cta-row {
+        gap: 0.5rem;
+    }
+
+    .cta-row .btn {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.9rem;
     }
 
     .template-item {
@@ -1716,27 +2173,522 @@ textarea:invalid:not(:placeholder-shown) + .error-message {
         min-width: fit-content;
     }
 
-    .main-nav {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .header-cta {
-        flex-direction: column;
-        width: 100%;
-        align-items: stretch;
-    }
-
     .form-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-
     .login-card {
         padding: 2rem;
+    }
+
+    #userInfo {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #userName {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    #loginBtn {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 견적서 페이지 모바일 반응형 */
+    .estimate-main {
+        padding: 1rem 4vw 2rem;
+    }
+
+    .page-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .customer-info-section {
+        padding: 1rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .customer-info-section h2 {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+
+    .inline-inputs {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
+
+    .label-inline {
+        grid-column: 1 / -1;
+    }
+
+    /* 체크박스/라디오 행 모바일 */
+    .checkbox-row,
+    .radio-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .checkbox-row label,
+    .radio-row label {
+        width: 100%;
+    }
+
+    .estimate-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .estimate-form-wrapper,
+    .estimate-form {
+        padding: 1.25rem !important;
+        gap: 1.5rem !important;
+        border-radius: 12px !important;
+    }
+
+    /* estimate-form 내부 form-section 모바일 */
+    .estimate-form .form-section {
+        padding-bottom: 1.5rem;
+    }
+
+    .estimate-form .form-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+
+    /* estimate-form 내부 quote-header 모바일 */
+    .estimate-form .quote-header {
+        padding: 1.25rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .estimate-form .quote-header h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .estimate-form .quote-header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .estimate-form .quote-company-info {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .estimate-form .quote-company-info p {
+        margin: 0.25rem 0;
+    }
+
+    /* estimate-form 내부 quote-total 모바일 */
+    .estimate-form .quote-total {
+        grid-template-columns: 1fr !important;
+        padding: 1rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .estimate-form .total-item {
+        font-size: 1rem;
+    }
+
+    .estimate-form .total-item span:last-child {
+        font-size: 1.1rem;
+    }
+
+    /* estimate-form 내부 section-header 모바일 */
+    .estimate-form .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .estimate-form .section-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .estimate-form .section-actions .btn {
+        flex: 1;
+        min-width: calc(50% - 0.25rem);
+    }
+
+    /* estimate-form 내부 quote-items-table 모바일 */
+    .estimate-form .quote-items-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .estimate-form .quote-items-table table {
+        min-width: 900px;
+        font-size: 0.8rem;
+    }
+
+    .estimate-form .quote-items-table th,
+    .estimate-form .quote-items-table td {
+        padding: 0.5rem 0.3rem;
+    }
+
+    .estimate-form .quote-items-table input,
+    .estimate-form .quote-items-table textarea {
+        font-size: 0.8rem;
+        padding: 0.35rem;
+    }
+
+    .estimate-summary {
+        position: static;
+    }
+
+    .summary-card {
+        padding: 1.25rem;
+    }
+
+    /* 검색 영역 모바일 */
+    .search-section {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem !important;
+        gap: 1rem;
+    }
+
+    .search-left {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .search-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .search-filter,
+    .search-input-group {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+        min-width: auto;
+    }
+
+    /* 현황 탭 모바일 */
+    .status-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .status-tab {
+        flex-shrink: 0;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* 견적서 목록 모바일 - 카드로 전환 */
+    .estimate-list-container {
+        padding: 1rem !important;
+    }
+
+    .desktop-table {
+        display: none;
+    }
+
+    .mobile-cards {
+        display: block;
+    }
+
+    .estimate-list-table {
+        display: none;
+    }
+
+    /* 견적서 항목 테이블 모바일 */
+    .quote-items-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .quote-items-table table {
+        min-width: 900px;
+        font-size: 0.8rem;
+    }
+
+    .quote-items-table th,
+    .quote-items-table td {
+        padding: 0.5rem 0.3rem;
+    }
+
+    /* 견적서 항목 테이블 컬럼 너비 모바일 조정 */
+    .quote-items-table th:nth-child(2),
+    .quote-items-table td:nth-child(2) {
+        width: 200px !important;
+        min-width: 200px !important;
+    }
+
+    .quote-items-table th:nth-child(3),
+    .quote-items-table td:nth-child(3) {
+        min-width: 180px !important;
+    }
+
+    .quote-items-table th:nth-child(4),
+    .quote-items-table td:nth-child(4),
+    .quote-items-table th.period-col,
+    .quote-items-table td.period-col {
+        width: 80px !important;
+        min-width: 80px !important;
+    }
+
+    .quote-items-table th:nth-child(5),
+    .quote-items-table td:nth-child(5) {
+        width: 50px !important;
+        min-width: 50px !important;
+    }
+
+    .quote-items-table td:nth-child(5) input {
+        width: 40px !important;
+    }
+
+    .quote-items-table th:nth-child(6),
+    .quote-items-table td:nth-child(6),
+    .quote-items-table th:nth-child(7),
+    .quote-items-table td:nth-child(7) {
+        width: 100px !important;
+        min-width: 100px !important;
+    }
+
+    .quote-items-table td:nth-child(6) input,
+    .quote-items-table td:nth-child(7) input {
+        width: 90px !important;
+        font-size: 0.8rem;
+    }
+
+    .quote-items-table th:nth-child(8),
+    .quote-items-table td:nth-child(8) {
+        min-width: 200px !important;
+    }
+
+    .quote-items-table .period-input {
+        width: 50px !important;
+        font-size: 0.8rem;
+    }
+
+    .quote-items-table input,
+    .quote-items-table textarea {
+        font-size: 0.8rem;
+        padding: 0.35rem;
+    }
+
+    /* 폼 섹션 모바일 */
+    .form-section {
+        padding-bottom: 1.5rem;
+    }
+
+    .form-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* 추가 서비스 섹션 모바일 */
+    .addon-service {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .addon-label {
+        font-size: 0.9rem;
+    }
+
+    /* 정보 박스 모바일 */
+    .info-box {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    /* 라벨 텍스트 모바일 */
+    .label-text {
+        font-size: 0.9rem;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 0.9rem;
+        padding: 0.65rem;
+    }
+
+    /* 견적서 헤더 모바일 */
+    .quote-header {
+        padding: 1.25rem !important;
+    }
+
+    .quote-header h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .quote-header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .quote-logo {
+        width: 100%;
+    }
+
+    .quote-company-info {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .quote-company-info p {
+        margin: 0.25rem 0;
+    }
+
+    /* 섹션 헤더 모바일 */
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .section-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .section-actions .btn {
+        flex: 1;
+        min-width: calc(50% - 0.25rem);
+    }
+
+    /* 폼 액션 버튼 모바일 */
+    .form-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 견적서 총액 섹션 모바일 */
+    .quote-total {
+        grid-template-columns: 1fr !important;
+        padding: 1rem !important;
+    }
+
+    .total-item {
+        font-size: 1rem;
+    }
+
+    .total-item span:last-child {
+        font-size: 1.1rem;
+    }
+
+    .items-total-row {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+    }
+
+    .items-total-row span:last-child {
+        font-size: 1.15rem;
+    }
+
+    /* estimate_view.html 고객사 정보 섹션 모바일 */
+    .customer-info-section[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    .customer-info-section[style*="display: flex"] > div:last-child {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .customer-info-section[style*="display: flex"] > div:last-child .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 고객사 정보 섹션 내부 버튼 그룹 모바일 */
+    .customer-info-section .form-grid > div[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+    }
+
+    .customer-info-section .form-grid > div[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+    }
+
+    .customer-info-section .form-grid > div[style*="display: flex"] .status-select {
+        width: 100% !important;
+    }
+
+    .customer-info-section .form-grid > div[style*="display: flex"] .btn {
+        width: 100% !important;
+    }
+
+    .customer-info-section .form-grid > div[style*="display: flex"] strong {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    /* estimate_view.html 버튼 그룹 모바일 */
+    .customer-info-section > div:last-child[style*="display: flex"] {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .customer-info-section > div:last-child[style*="display: flex"] .btn {
+        width: 100% !important;
+    }
+
+    /* 견적서 항목 추가 버튼 모바일 */
+    .section-actions .btn-icon-small {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    /* 페이지네이션 모바일 */
+    .pagination-container {
+        padding: 1rem;
+    }
+
+    .pagination {
+        gap: 0.25rem;
+        flex-wrap: wrap;
+    }
+
+    .pagination-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+        min-width: 30px;
     }
 }

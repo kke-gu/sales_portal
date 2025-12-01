@@ -20,10 +20,36 @@
             </div>
         </a>
 
-        <nav class="main-nav">
+        <button class="mobile-menu-toggle" aria-label="메뉴 열기">
+            <span class="material-icons">menu</span>
+        </button>
+
+        <nav class="main-nav" id="mainNav">
+            <button class="mobile-menu-close" aria-label="메뉴 닫기">
+                <span class="material-icons">close</span>
+            </button>
             <a href="index.html" class="nav-pill">홈</a>
             <a href="estimate.html" class="nav-pill">견적 작성</a>
             <a href="estimate_list.html" class="nav-pill active">진행현황</a>
+            <div class="mobile-header-cta">
+                <a class="btn btn-icon" href="assets/회사소개서.pdf" download>
+                    <span class="material-icons">download</span>
+                    회사소개서
+                </a>
+                <a class="btn btn-icon" href="https://www.malgnsoft.com/" target="_blank" rel="noopener noreferrer">
+                    <span class="material-icons">home</span>
+                    대표 홈페이지
+                </a>
+                <a class="btn btn-icon" href="https://help.malgnsoft.com/main/index.jsp" target="_blank" rel="noopener noreferrer">
+                    <span class="material-icons">headset_mic</span>
+                    고객센터
+                </a>
+                <div id="mobileUserInfo" style="display: none;">
+                    <a id="mobileUserName" href="profile.html" style="text-decoration: none; color: inherit; cursor: pointer;"></a>
+                    <button type="button" class="btn secondary" onclick="Auth.logout()">로그아웃</button>
+                </div>
+                <a id="mobileLoginBtn" href="login.html" class="btn secondary" style="display: none;">로그인</a>
+            </div>
         </nav>
 
         <div class="header-cta">
@@ -320,6 +346,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="auth.js"></script>
+    <script src="mobile-menu.js"></script>
     <script>
         Auth.requireAuth();
     </script>
